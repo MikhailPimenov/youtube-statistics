@@ -1,7 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
+import getTestModel from './API/testAPI'
+import Urls from './API/urls'
+import { useState } from 'react'
 
 function App() {
+  const [testData, setTestData] = useState([])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,9 +22,15 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={() => getTestModel(Urls.urlGetTest, setTestData)}>
+          Test API
+        </button>
+        {testData.map((element) => {
+          return <a>{element.string_for_json}</a>
+        })}
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
